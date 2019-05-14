@@ -40,7 +40,8 @@ def get_authenticated_service(args):
         ),
         scope="https://www.googleapis.com/auth/youtube",
     )
-    storage = Storage(".channel_to_playlist-oauth2-credentials.json")
+    storage = Storage(args.secrets)
+    #storage = Storage(".channel_to_playlist-oauth2-credentials.json")
     credentials = storage.get()
     if credentials is None or credentials.invalid:
         credentials = run_flow(flow, storage, args)
